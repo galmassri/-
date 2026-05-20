@@ -1,0 +1,6 @@
+{
+  "name": "MikroTik Manager Pro",
+  "description": "Professional Hotspot and Voucher management system for MikroTik routers, featuring reseller balance management, active session monitoring, and bulk voucher generation.",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}

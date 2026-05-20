@@ -1,0 +1,91 @@
+{
+  "entities": {
+    "Voucher": {
+      "title": "Voucher",
+      "description": "Hotspot voucher code (user=password)",
+      "type": "object",
+      "properties": {
+        "code": { "type": "string", "description": "Unique code used for both username and password" },
+        "profile": { "type": "string", "description": "MikroTik Hotspot profile name" },
+        "status": { "type": "string", "enum": ["new", "sold", "used"] },
+        "price": { "type": "number" },
+        "resellerId": { "type": "string" },
+        "routerId": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "soldAt": { "type": "string", "format": "date-time" },
+        "usedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["code", "profile", "status", "createdAt"]
+    },
+    "Profile": {
+      "title": "Profile",
+      "description": "Hotspot service profile",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "rateLimit": { "type": "string" },
+        "sessionTimeout": { "type": "string" },
+        "price": { "type": "number" }
+      },
+      "required": ["name", "price"]
+    },
+    "Reseller": {
+      "title": "Reseller",
+      "description": "System reseller",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "phone": { "type": "string" },
+        "balance": { "type": "number" }
+      },
+      "required": ["name", "balance"]
+    },
+    "Router": {
+      "title": "Router",
+      "description": "MikroTik router configuration",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "host": { "type": "string" },
+        "user": { "type": "string" },
+        "password": { "type": "string" },
+        "port": { "type": "number" }
+      },
+      "required": ["name", "host", "user", "password"]
+    },
+    "Sale": {
+      "title": "Sale",
+      "description": "Information about a voucher sale",
+      "type": "object",
+      "properties": {
+        "voucherId": { "type": "string" },
+        "resellerId": { "type": "string" },
+        "amount": { "type": "number" },
+        "soldAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["voucherId", "resellerId", "amount", "soldAt"]
+    }
+  },
+  "firestore": {
+    "vouchers": {
+      "schema": "Voucher",
+      "description": "Collection of hotspot vouchers"
+    },
+    "profiles": {
+      "schema": "Profile",
+      "description": "Service profiles"
+    },
+    "resellers": {
+      "schema": "Reseller",
+      "description": "Resellers and their balances"
+    },
+    "routers": {
+      "schema": "Router",
+      "description": "MikroTik router settings"
+    },
+    "sales": {
+      "schema": "Sale",
+      "description": "Voucher sales records"
+    }
+  }
+}
